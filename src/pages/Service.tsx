@@ -66,36 +66,6 @@ const Service: React.FC = () => {
           : data.map((gig: any) => (
               <ServiceCard key={gig._id} item={gig} />
             ))}
-        <IonCard>
-          <img
-            alt="Chemicals"
-            src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          />
-          <IonCardHeader>
-            <IonCardTitle>Chemical Engineering</IonCardTitle>
-            <div className="container">
-              <img
-                className="profile"
-                alt="guy in red"
-                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              />
-              <IonCardSubtitle>Carl Bryan Babol</IonCardSubtitle>
-            </div>
-          </IonCardHeader>
-
-          <IonCardContent>
-            Unlocking the secrets of chemical processes! With
-            personalized sessions tailored to your learning style, I
-            bring clarity to complex subjects like thermodynamics,
-            kinetics, and process design. Let's conquer chemical
-            engineering together and set the stage for your academic
-            success!
-          </IonCardContent>
-          <div className="button-container">
-            <IonButton href="/servicedetails">Message</IonButton>
-            <IonButton href="/servicedetails">More Details</IonButton>
-          </div>
-        </IonCard>
       </IonContent>
     </IonPage>
   );
