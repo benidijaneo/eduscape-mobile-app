@@ -23,6 +23,7 @@ import Messages from "./pages/Messages";
 import Services from "./pages/Services";
 import Service from "./pages/Service";
 import Message from "./pages/Message";
+import SignIn from "./pages/SignIn";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -42,6 +43,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import Register from "./pages/Register";
 
 setupIonicReact();
 
@@ -65,8 +67,14 @@ const App: React.FC = () => (
           <Route path="/message">
             <Message />
           </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
           <Route exact path="/">
-            <Redirect to="/home" />
+            <Redirect to="/register" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
