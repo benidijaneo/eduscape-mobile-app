@@ -14,29 +14,21 @@ import {
 } from "@ionic/react";
 
 import "./Home.scss";
-<<<<<<< HEAD
+
 import getCurrentUser from "../utils/getCurrentUser";
 import { home } from "ionicons/icons";
-=======
->>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
 
 const Home: React.FC = () => {
-  const currentUser = getCurrentUser()
+  const currentUser = getCurrentUser();
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-<<<<<<< HEAD
             <IonTitle>EduScape</IonTitle>
-            <img
-              className="profile"
-              alt="guy in red"
-              src={currentUser.img}
-            />
-=======
+            <img className="profile" alt="guy in red" src={currentUser.img} />
+
             <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
->>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
           </div>
         </IonToolbar>
       </IonHeader>
