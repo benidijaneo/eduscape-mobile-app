@@ -1,0 +1,20 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  padding: 10px;
+}
+
+.profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.container {
+  display: flex;
+  padding-top: 20px;
+  align-items: center;
+  gap: 15px;
+}
