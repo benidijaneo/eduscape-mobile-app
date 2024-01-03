@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -6,16 +6,51 @@ import {
   IonTitle,
   IonToolbar,
   IonButton,
-} from "@ionic/react";
+} from '@ionic/react';
 
-import "./Register.scss";
+import upload from '../utils/upload';
+import newRequest from '../utils/newRequest';
+import { useHistory } from 'react-router-dom';
+import './Register.scss';
 
 const Register: React.FC = () => {
   const [file, setFile] = useState(null);
+  const [user, setUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+    img: '',
+    country: '',
+    isSeller: false,
+    desc: '',
+  });
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
-  const handleSeller = () => {};
+  const navigate = useHistory();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const url = await upload(file);
+    try {
+      await newRequest.post('/auth/register', {
+        ...user,
+        img: url,
+      });
+      navigate.push('/signin');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleChange = (e: any) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+  const handleSeller = (e: any) => {
+    setUser((prev) => {
+      return { ...prev, isSeller: e.target.checked };
+    });
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -36,9 +71,13 @@ const Register: React.FC = () => {
                 onChange={handleChange}
               />
               <label htmlFor="">Password</label>
-              <input name="password" type="password" onChange={handleChange} />
+              <input
+                name="password"
+                type="password"
+                onChange={handleChange}
+              />
               <label htmlFor="">Profile Picture</label>
-              <input type="file" onChange={(e) => {}} />
+              <input type="file" onChange={(e:any) => setFile(e.target.files[0])} />
               <label htmlFor="">Province</label>
               <input
                 name="province"
@@ -74,7 +113,9 @@ const Register: React.FC = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <IonButton href="/signin">Already have an account?</IonButton>
+            <IonButton href="/signin">
+              Already have an account?
+            </IonButton>
           </form>
         </div>
       </IonContent>

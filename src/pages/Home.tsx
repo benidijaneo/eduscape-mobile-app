@@ -9,9 +9,11 @@ import {
 import ExploreContainer from "../components/ExploreContainer";
 
 import "./Home.scss";
+import getCurrentUser from "../utils/getCurrentUser";
 import { home } from "ionicons/icons";
 
 const Home: React.FC = () => {
+  const currentUser = getCurrentUser()
   return (
     <IonPage>
       <IonHeader>
@@ -21,7 +23,7 @@ const Home: React.FC = () => {
             <img
               className="profile"
               alt="guy in red"
-              src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={currentUser.img}
             />
           </div>
         </IonToolbar>
