@@ -5,12 +5,20 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonIcon,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 
 import "./Home.scss";
+<<<<<<< HEAD
 import getCurrentUser from "../utils/getCurrentUser";
 import { home } from "ionicons/icons";
+=======
+>>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
 
 const Home: React.FC = () => {
   const currentUser = getCurrentUser()
@@ -19,21 +27,20 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
+<<<<<<< HEAD
             <IonTitle>EduScape</IonTitle>
             <img
               className="profile"
               alt="guy in red"
               src={currentUser.img}
             />
+=======
+            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
+>>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
           </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader> */}
         <div className="home">
           <div className="features">
             <div className="container">
