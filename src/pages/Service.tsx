@@ -14,16 +14,62 @@ import {
   IonList,
   IonThumbnail,
   IonButton,
-} from "@ionic/react";
-import "./Service.scss";
+} from '@ionic/react';
+import React, { useEffect, useRef, useState } from 'react';
+import './Service.scss';
+import { useLocation } from 'react-router-dom';
+import ServiceCard from './ServiceCard';
+import { useQuery } from 'react-query';
+import newRequest from '../utils/newRequest';
 
 const Service: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const [sort, setSort] = useState('sales');
+  const minRef = useRef<number>(0);
+  const maxRef = useRef<number>(0);
+
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ['gigs'],
+    queryFn: () =>
+      newRequest
+        .get(
+          `/gigs${search}&min=${minRef.current}&max=${maxRef.current}&sort=${sort}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+
+  console.log(data);
+
+  const reSort = (type: any) => {
+    setSort(type);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [sort]);
+
+  const apply = () => {
+    refetch();
+  };
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>{/* <IonTitle>EduScape</IonTitle> */}</IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+<<<<<<< HEAD
+        {' '}
+        {isLoading
+          ? 'loading'
+          : error
+          ? 'Something went wrong!'
+          : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
+=======
         <IonCard>
           <img
             alt="Chemicals"
@@ -53,6 +99,7 @@ const Service: React.FC = () => {
             <IonButton href="/servicedetails">More Details</IonButton>
           </div>
         </IonCard>
+>>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
       </IonContent>
     </IonPage>
   );
