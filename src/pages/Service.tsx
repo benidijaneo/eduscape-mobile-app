@@ -33,13 +33,9 @@ const Service: React.FC = () => {
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ['gigs'],
     queryFn: () =>
-      newRequest
-        .get(
-          `/gigs`
-        )
-        .then((res) => {
-          return res.data;
-        }),
+      newRequest.get(`/gigs`).then((res) => {
+        return res.data;
+      }),
   });
 
   console.log(data);
@@ -67,12 +63,9 @@ const Service: React.FC = () => {
           ? 'loading'
           : error
           ? 'Something went wrong!'
-<<<<<<< HEAD
-          : data.map((gig:any) => <ServiceCard key={gig._id}  item={gig} />)}
-        
-=======
-          : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
-=======
+          : data.map((gig: any) => (
+              <ServiceCard key={gig._id} item={gig} />
+            ))}
         <IonCard>
           <img
             alt="Chemicals"
@@ -91,19 +84,18 @@ const Service: React.FC = () => {
           </IonCardHeader>
 
           <IonCardContent>
-            Unlocking the secrets of chemical processes! With personalized
-            sessions tailored to your learning style, I bring clarity to complex
-            subjects like thermodynamics, kinetics, and process design. Let's
-            conquer chemical engineering together and set the stage for your
-            academic success!
+            Unlocking the secrets of chemical processes! With
+            personalized sessions tailored to your learning style, I
+            bring clarity to complex subjects like thermodynamics,
+            kinetics, and process design. Let's conquer chemical
+            engineering together and set the stage for your academic
+            success!
           </IonCardContent>
           <div className="button-container">
             <IonButton href="/servicedetails">Message</IonButton>
             <IonButton href="/servicedetails">More Details</IonButton>
           </div>
         </IonCard>
->>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
->>>>>>> 40f1efaffd73396f8310daa7638e6cc0f40112a2
       </IonContent>
     </IonPage>
   );
