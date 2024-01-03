@@ -35,7 +35,7 @@ const Service: React.FC = () => {
     queryFn: () =>
       newRequest
         .get(
-          `/gigs${search}&min=${minRef.current}&max=${maxRef.current}&sort=${sort}`
+          `/gigs`
         )
         .then((res) => {
           return res.data;
@@ -64,43 +64,13 @@ const Service: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-<<<<<<< HEAD
-        {' '}
+        {console.log('test')}
         {isLoading
           ? 'loading'
           : error
           ? 'Something went wrong!'
-          : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
-=======
-        <IonCard>
-          <img
-            alt="Chemicals"
-            src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          />
-          <IonCardHeader>
-            <IonCardTitle>Chemical Engineering</IonCardTitle>
-            <div className="container">
-              <img
-                className="profile"
-                alt="guy in red"
-                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              />
-              <IonCardSubtitle>Carl Bryan Babol</IonCardSubtitle>
-            </div>
-          </IonCardHeader>
-
-          <IonCardContent>
-            Unlocking the secrets of chemical processes! With personalized
-            sessions tailored to your learning style, I bring clarity to complex
-            subjects like thermodynamics, kinetics, and process design. Let's
-            conquer chemical engineering together and set the stage for your
-            academic success!
-          </IonCardContent>
-          <div className="button-container">
-            <IonButton href="/servicedetails">More Details</IonButton>
-          </div>
-        </IonCard>
->>>>>>> 6197615fb0afd8252780ade734b5e5a9cd469a69
+          : data.map((gig:any) => <ServiceCard key={gig._id}  item={gig} />)}
+        
       </IonContent>
     </IonPage>
   );
