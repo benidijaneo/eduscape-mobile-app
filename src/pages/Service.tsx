@@ -51,8 +51,7 @@ const Service: React.FC = () => {
             academic success!
           </IonCardContent>
           <div className="button-container">
-            <IonButton>Message</IonButton>
-            <IonButton>Avail</IonButton>
+            <IonButton href="/servicedetails">More Details</IonButton>
           </div>
         </IonCard>
       </IonContent>

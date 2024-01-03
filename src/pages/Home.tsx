@@ -5,11 +5,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonIcon,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 
 import "./Home.scss";
-import { home } from "ionicons/icons";
 
 const Home: React.FC = () => {
   return (
@@ -17,21 +21,11 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle>EduScape</IonTitle>
-            <img
-              className="profile"
-              alt="guy in red"
-              src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
+            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
           </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader> */}
         <div className="home">
           <div className="features">
             <div className="container">
