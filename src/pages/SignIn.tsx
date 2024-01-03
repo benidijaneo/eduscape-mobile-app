@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-} from '@ionic/react';
-import newRequest from '../utils/newRequest';
-import { useHistory } from 'react-router-dom';
+} from "@ionic/react";
+import newRequest from "../utils/newRequest";
+import { useHistory } from "react-router-dom";
 
-import './SignIn.scss';
+import "./SignIn.scss";
 
 const SignIn: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const navigate = useHistory();
@@ -21,12 +21,13 @@ const SignIn: React.FC = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const res = await newRequest.post('/auth/login', {
+      const res = await newRequest.post("/auth/login", {
         username,
         password,
       });
-      localStorage.setItem('currentUser', JSON.stringify(res.data));
-      navigate.push('/home');
+      localStorage.setItem("currentUser", JSON.stringify(res.data));
+      navigate.push("/home");
+      history.go(0);
     } catch (err: any) {
       setError(err.response.data);
     }
@@ -35,7 +36,7 @@ const SignIn: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
+          <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">

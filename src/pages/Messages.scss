@@ -1,8 +1,13 @@
 .img-container {
   img {
-    height: 54px;
-    width: 54px;
+    height: 44px;
+    width: 44px;
     border-radius: 50%;
     object-fit: cover;
   }
+}
+
+.message-border {
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid #f1fbfd;
 }

@@ -12,9 +12,6 @@ import {
   IonTabButton,
   IonTabs,
 } from "@ionic/react";
-
-import "./Home.scss";
-
 import getCurrentUser from "../utils/getCurrentUser";
 import "./Home.scss";
 import { home } from "ionicons/icons";
@@ -26,12 +23,6 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle>EduScape</IonTitle>
-
-            <img className="profile" alt="guy in red" src={currentUser.img} />
-
-            <img className="profile" alt="guy in red" src={currentUser.img} />
-
             <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
           </div>
         </IonToolbar>

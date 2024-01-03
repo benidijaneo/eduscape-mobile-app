@@ -18,3 +18,12 @@
   align-items: center;
   gap: 15px;
 }
+
+ion-card {
+  div {
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+}

@@ -14,6 +14,7 @@ import {
   IonList,
   IonThumbnail,
   IonButton,
+<<<<<<< Updated upstream
 } from '@ionic/react';
 import './Service.scss';
 import { useQuery } from 'react-query';
@@ -21,6 +22,12 @@ import newRequest from '../utils/newRequest';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import getCurrentUser from '../utils/getCurrentUser';
+=======
+} from "@ionic/react";
+import "./Service.scss";
+import { useQuery } from "react-query";
+import newRequest from "../utils/newRequest";
+>>>>>>> Stashed changes
 interface ServiceCardProps {
   item: {
     _id: string;
@@ -36,7 +43,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
   const currentUser = getCurrentUser();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['gigUser', item.userId],
+    queryKey: ["gigUser", item.userId],
     queryFn: () =>
       newRequest.get(`/users/${item.userId}`).then((res: any) => {
         return res.data;
@@ -63,27 +70,25 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
   return (
     <IonCard>
       {isLoading ? (
-        'loading'
+        "loading"
       ) : error ? (
-        'error'
+        "error"
       ) : (
-        <img alt="cover" src={item.cover} />
+        <div>
+          <img alt="cover" src={item.cover} />
+        </div>
       )}
 
       <IonCardHeader>
         <IonCardTitle>{item.title}</IonCardTitle>
 
         {isLoading ? (
-          'loading'
+          "loading"
         ) : error ? (
-          'error'
+          "error"
         ) : (
           <div className="container">
-            <img
-              className="profile"
-              alt="guy in red"
-              src={data.img}
-            />
+            <img className="profile" alt="guy in red" src={data.img} />
             <IonCardSubtitle>{data.username}</IonCardSubtitle>
           </div>
         )}

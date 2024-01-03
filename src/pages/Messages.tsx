@@ -14,11 +14,11 @@ import {
   IonList,
   IonThumbnail,
   IonButton,
-} from '@ionic/react';
-import './Messages.scss';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import newRequest from '../utils/newRequest';
-import getCurrentUser from '../utils/getCurrentUser';
+} from "@ionic/react";
+import "./Messages.scss";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import newRequest from "../utils/newRequest";
+import getCurrentUser from "../utils/getCurrentUser";
 
 const Messages: React.FC = () => {
   const currentUser = getCurrentUser();
@@ -27,7 +27,7 @@ const Messages: React.FC = () => {
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['conversations'],
+    queryKey: ["conversations"],
     queryFn: () =>
       newRequest.get(`/conversations`).then((res) => {
         return res.data;
@@ -39,7 +39,7 @@ const Messages: React.FC = () => {
       return newRequest.put(`/conversations/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['conversations']);
+      queryClient.invalidateQueries(["conversations"]);
     },
   });
 
@@ -50,7 +50,7 @@ const Messages: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle style={{ color: '#c63625' }}>EduScape</IonTitle>
+          <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -58,10 +58,11 @@ const Messages: React.FC = () => {
           <IonCardHeader>
             <IonCardTitle>Messages</IonCardTitle>
           </IonCardHeader>
+
           {isLoading ? (
-            'loading'
+            "loading"
           ) : error ? (
-            'error'
+            "error"
           ) : (
             <IonCardContent>
               {data.map((c: any) => (
@@ -69,28 +70,40 @@ const Messages: React.FC = () => {
                   className={
                     ((currentUser.isSeller && !c.readBySeller) ||
                       (!currentUser.isSeller && !c.readByBuyer)) &&
-                    'active'
+                    "active"
                   }
                   key={c.id}
                 >
                   <IonItem>
                     <IonThumbnail slot="start">
                       <div className="img-container">
-                        <img
-                          alt="Silhouette of mountains"
-                          src={c.img}
-                        />
+                        <img alt="Silhouette of mountains" src={c.img} />
                       </div>
                     </IonThumbnail>
                     <IonLabel>{c.id}</IonLabel>
-                    <IonButton href={`/message/${c.id}`}>
-                      View
-                    </IonButton>
+                    <IonButton href={`/message/${c.id}`}>View</IonButton>
                   </IonItem>
                 </IonList>
               ))}
             </IonCardContent>
           )}
+
+          <IonCardContent>
+            <IonList>
+              <IonItem>
+                <IonThumbnail slot="start">
+                  <div className="img-container">
+                    <img
+                      alt="Silhouette of mountains"
+                      src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
+                    />
+                  </div>
+                </IonThumbnail>
+                <IonLabel>Carl Bryan Babol</IonLabel>
+                <IonButton href="/message">View</IonButton>
+              </IonItem>
+            </IonList>
+          </IonCardContent>
         </IonCard>
       </IonContent>
     </IonPage>

@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   IonApp,
@@ -28,6 +28,7 @@ import Service from "./pages/Service";
 import Message from "./pages/Message";
 import SignIn from "./pages/SignIn";
 import Profile from "./pages/Profile";
+import getCurrentUser from "./utils/getCurrentUser";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -53,8 +54,22 @@ import ServiceDetails from "./pages/ServiceDetails";
 
 setupIonicReact();
 
+// const [showTabs, setShowTabs] = useState(false);
+
+// const handleChange = () => {
+//   setShowTabs(!currentUser);
+// };
+
 const App: React.FC = () => {
-  const currentUser = true;
+  const [showTabs, setShowTabs] = useState(true);
+
+  const currentUser = getCurrentUser();
+  console.log(currentUser);
+
+  useEffect(() => {
+    // Update showTabs based on the presence of currentUser
+    setShowTabs(!!currentUser);
+  }, [currentUser]);
 
   return (
     <IonApp>
@@ -91,11 +106,17 @@ const App: React.FC = () => {
             <Route path="/gig/:id">
               <ServiceDetails />
             </Route>
-            <Route exact path="/">
-              <Redirect to="/register" />
-            </Route>
+            {!currentUser ? (
+              <Route exact path="/">
+                <Redirect to="/register" />
+              </Route>
+            ) : (
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+            )}
           </IonRouterOutlet>
-          {currentUser ? (
+          {showTabs ? (
             <IonTabBar slot="bottom">
               <IonTabButton tab="home" href="/home">
                 <IonIcon aria-hidden="true" icon={homeOutline} />
