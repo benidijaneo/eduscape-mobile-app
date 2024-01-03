@@ -14,9 +14,7 @@ const Message: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
-        </IonToolbar>
+        <IonToolbar>{/* <IonTitle>EduScape</IonTitle> */}</IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true}>
         <div className="message">

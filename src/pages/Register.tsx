@@ -55,7 +55,7 @@ const Register: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
+          <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">

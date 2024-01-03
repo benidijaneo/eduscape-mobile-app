@@ -15,14 +15,14 @@ import {
   IonThumbnail,
   IonButton,
 } from "@ionic/react";
-import "./Messages.css";
+import "./Messages.scss";
 
 const Messages: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
+          <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -34,10 +34,12 @@ const Messages: React.FC = () => {
             <IonList>
               <IonItem>
                 <IonThumbnail slot="start">
-                  <img
-                    alt="Silhouette of mountains"
-                    src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
-                  />
+                  <div className="img-container">
+                    <img
+                      alt="Silhouette of mountains"
+                      src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </div>
                 </IonThumbnail>
                 <IonLabel>Carl Bryan Babol</IonLabel>
                 <IonButton href="/message">View</IonButton>
