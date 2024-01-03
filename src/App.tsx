@@ -73,7 +73,7 @@ const App: React.FC = () => {
             <Route path="/service">
               <Service />
             </Route>
-            <Route path="/message">
+            <Route path="/message/:id">
               <Message />
             </Route>
             <Route path="/signin">
@@ -88,7 +88,7 @@ const App: React.FC = () => {
             <Route path="/payment">
               <Payment />
             </Route>
-            <Route path="/servicedetails">
+            <Route path="/gig/:id">
               <ServiceDetails />
             </Route>
             <Route exact path="/">

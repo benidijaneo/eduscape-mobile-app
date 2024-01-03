@@ -38,8 +38,6 @@ const Service: React.FC = () => {
       }),
   });
 
-  console.log(data);
-
   const reSort = (type: any) => {
     setSort(type);
     setOpen(false);
@@ -58,7 +56,6 @@ const Service: React.FC = () => {
         <IonToolbar>{/* <IonTitle>EduScape</IonTitle> */}</IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {console.log('test')}
         {isLoading
           ? 'loading'
           : error
