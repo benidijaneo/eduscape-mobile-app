@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IonContent,
   IonHeader,
@@ -20,12 +20,12 @@ import {
   IonLabel,
   IonList,
   IonThumbnail,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import './Profile.scss';
-import getCurrentUser from '../utils/getCurrentUser';
-import { useHistory } from 'react-router';
-import newRequest from '../utils/newRequest';
+import "./Profile.scss";
+import getCurrentUser from "../utils/getCurrentUser";
+import { useHistory } from "react-router";
+import newRequest from "../utils/newRequest";
 
 const Profile: React.FC = () => {
   const currentUser = getCurrentUser();
@@ -33,9 +33,9 @@ const Profile: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await newRequest.post('/auth/logout');
+      await newRequest.post("/auth/logout");
       localStorage.setItem("currentUser", JSON.stringify(null));
-      navigate.push('/register');
+      navigate.push("/register");
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +45,7 @@ const Profile: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle style={{ color: '#c63625' }}>EduScape</IonTitle>
+            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
             {/* <img
               className="profile"
               alt="guy in red"
@@ -59,22 +59,15 @@ const Profile: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>Profile</IonCardTitle>
-              <IonCardSubtitle>
-                {currentUser.username}
-              </IonCardSubtitle>
+              <IonCardSubtitle>{currentUser.username}</IonCardSubtitle>
             </IonCardHeader>
             <IonCardContent>
               <IonList>
                 <IonItem lines="none">
                   <IonThumbnail slot="start">
-                    <img
-                      alt="Silhouette of mountains"
-                      src={currentUser.img}
-                    />
+                    <img alt="User Profile" src={currentUser.img} />
                   </IonThumbnail>
-                  <IonLabel>
-                    Username: {currentUser.username}
-                  </IonLabel>
+                  <IonLabel>Username: {currentUser.username}</IonLabel>
                 </IonItem>
               </IonList>
             </IonCardContent>

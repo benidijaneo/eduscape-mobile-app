@@ -77,7 +77,12 @@ const Messages: React.FC = () => {
                   <IonItem>
                     <IonThumbnail slot="start">
                       <div className="img-container">
-                        <img alt="Silhouette of mountains" src={c.img} />
+                        <img
+                          alt="Silhouette of mountains"
+                          src={
+                            "https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
+                          }
+                        />
                       </div>
                     </IonThumbnail>
                     <IonLabel>{c.id}</IonLabel>
@@ -88,7 +93,7 @@ const Messages: React.FC = () => {
             </IonCardContent>
           )}
 
-          <IonCardContent>
+          {/* <IonCardContent>
             <IonList>
               <IonItem>
                 <IonThumbnail slot="start">
@@ -103,7 +108,7 @@ const Messages: React.FC = () => {
                 <IonButton href="/message">View</IonButton>
               </IonItem>
             </IonList>
-          </IonCardContent>
+          </IonCardContent> */}
         </IonCard>
       </IonContent>
     </IonPage>

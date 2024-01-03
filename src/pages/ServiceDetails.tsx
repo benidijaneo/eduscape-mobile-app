@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IonContent,
   IonHeader,
@@ -17,19 +17,19 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonButton,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import './ServiceDetails.scss';
-import { timerOutline } from 'ionicons/icons';
-import { useQuery } from 'react-query';
-import newRequest from '../utils/newRequest';
-import { Link, useParams } from 'react-router-dom';
+import "./ServiceDetails.scss";
+import { timerOutline } from "ionicons/icons";
+import { useQuery } from "react-query";
+import newRequest from "../utils/newRequest";
+import { Link, useParams } from "react-router-dom";
 
 const ServiceDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['gig'],
+    queryKey: ["gig"],
     queryFn: () =>
       newRequest.get(`/gigs/single/${id}`).then((res) => {
         return res.data;
@@ -43,7 +43,7 @@ const ServiceDetails: React.FC = () => {
     error: errorUser,
     data: dataUser,
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ["user"],
     queryFn: () =>
       newRequest.get(`/users/${userId}`).then((res) => {
         return res.data;
@@ -55,24 +55,24 @@ const ServiceDetails: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle style={{ color: '#c63625' }}>EduScape</IonTitle>
+            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
           </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">
         {isLoading ? (
-          'loading'
+          "loading"
         ) : error ? (
-          'Something went wrong!'
+          "Something went wrong!"
         ) : (
           <IonCard>
             <img alt="chem" src={data.cover} />
             <IonCardHeader>
               <IonCardTitle>{data.title}</IonCardTitle>
               {isLoadingUser ? (
-                'loading'
+                "loading"
               ) : errorUser ? (
-                'Something went wrong!'
+                "Something went wrong!"
               ) : (
                 <div className="container">
                   <img
@@ -80,9 +80,7 @@ const ServiceDetails: React.FC = () => {
                     alt="guy in red"
                     src={dataUser.img}
                   />
-                  <IonCardSubtitle>
-                    {dataUser.username}
-                  </IonCardSubtitle>
+                  <IonCardSubtitle>{dataUser.username}</IonCardSubtitle>
                 </div>
               )}
             </IonCardHeader>
@@ -94,9 +92,9 @@ const ServiceDetails: React.FC = () => {
         )}
         {/* -------------------------------------------------------- */}
         {isLoading ? (
-          ''
+          ""
         ) : error ? (
-          'Something went wrong!'
+          "Something went wrong!"
         ) : (
           <IonCard>
             <IonCardHeader>
@@ -122,7 +120,7 @@ const ServiceDetails: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <IonButton>Continue</IonButton>
+              {/* <IonButton>Continue</IonButton> */}
             </IonCardContent>
           </IonCard>
         )}

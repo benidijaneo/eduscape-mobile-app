@@ -14,20 +14,14 @@ import {
   IonList,
   IonThumbnail,
   IonButton,
-<<<<<<< Updated upstream
-} from '@ionic/react';
-import './Service.scss';
-import { useQuery } from 'react-query';
-import newRequest from '../utils/newRequest';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import getCurrentUser from '../utils/getCurrentUser';
-=======
 } from "@ionic/react";
 import "./Service.scss";
 import { useQuery } from "react-query";
 import newRequest from "../utils/newRequest";
->>>>>>> Stashed changes
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import getCurrentUser from "../utils/getCurrentUser";
+
 interface ServiceCardProps {
   item: {
     _id: string;
@@ -96,9 +90,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
 
       <IonCardContent>{item.desc}</IonCardContent>
       <div className="button-container">
-        <IonButton onClick={() => handleContact(item)}>
-          Message
-        </IonButton>
+        <IonButton onClick={() => handleContact(item)}>Message</IonButton>
         <IonButton href={`/gig/${item._id}`}>More Details</IonButton>
       </div>
     </IonCard>
