@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle>EduScape</IonTitle>
+            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
             {/* <img
               className="profile"
               alt="guy in red"

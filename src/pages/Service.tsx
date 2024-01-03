@@ -21,9 +21,7 @@ const Service: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
-        </IonToolbar>
+        <IonToolbar>{/* <IonTitle>EduScape</IonTitle> */}</IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonCard>
@@ -51,6 +49,7 @@ const Service: React.FC = () => {
             academic success!
           </IonCardContent>
           <div className="button-container">
+            <IonButton href="/servicedetails">Message</IonButton>
             <IonButton href="/servicedetails">More Details</IonButton>
           </div>
         </IonCard>
