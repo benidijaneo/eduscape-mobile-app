@@ -18,25 +18,48 @@ import {
 import './Service.scss';
 import { useQuery } from 'react-query';
 import newRequest from '../utils/newRequest';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import getCurrentUser from '../utils/getCurrentUser';
 interface ServiceCardProps {
   item: {
     _id: string;
     userId: string;
     cover: string;
     title: string;
-    desc:string
+    desc: string;
   };
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
+  const navigate = useHistory();
+  const currentUser = getCurrentUser();
+
   const { isLoading, error, data } = useQuery({
     queryKey: ['gigUser', item.userId],
     queryFn: () =>
       newRequest.get(`/users/${item.userId}`).then((res: any) => {
-        console.log(res.data);
         return res.data;
       }),
   });
+
+  const handleContact = async (order: any) => {
+    const sellerId = order.price;
+    const buyerId = order._id;
+    const id = sellerId + buyerId;
+
+    try {
+      const res = await newRequest.get(`/conversations/single/${id}`);
+      navigate.push(`/message/${res.data.id}`);
+    } catch (err: any) {
+      if (err.response.status === 404 || err.response.status === 500) {
+        const res = await newRequest.post(`/conversations/`, {
+          to: currentUser.seller ? buyerId : sellerId,
+        });
+        navigate.push(`/message/${res.data.id}`);
+      }
+    }
+  };
   return (
     <IonCard>
       {isLoading ? (
@@ -68,7 +91,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
 
       <IonCardContent>{item.desc}</IonCardContent>
       <div className="button-container">
-        <IonButton href="/servicedetails">More Details</IonButton>
+        <IonButton onClick={() => handleContact(item)}>
+          Message
+        </IonButton>
+        <IonButton href={`/gig/${item._id}`}>More Details</IonButton>
       </div>
     </IonCard>
   );

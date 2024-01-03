@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   IonContent,
   IonHeader,
@@ -17,83 +17,115 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonButton,
-} from "@ionic/react";
+} from '@ionic/react';
 
-import "./ServiceDetails.scss";
-import { timerOutline } from "ionicons/icons";
+import './ServiceDetails.scss';
+import { timerOutline } from 'ionicons/icons';
+import { useQuery } from 'react-query';
+import newRequest from '../utils/newRequest';
+import { Link, useParams } from 'react-router-dom';
 
 const ServiceDetails: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['gig'],
+    queryFn: () =>
+      newRequest.get(`/gigs/single/${id}`).then((res) => {
+        return res.data;
+      }),
+  });
+
+  const userId = data?.userId;
+
+  const {
+    isLoading: isLoadingUser,
+    error: errorUser,
+    data: dataUser,
+  } = useQuery({
+    queryKey: ['user'],
+    queryFn: () =>
+      newRequest.get(`/users/${userId}`).then((res) => {
+        return res.data;
+      }),
+    enabled: !!userId,
+  });
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
+            <IonTitle style={{ color: '#c63625' }}>EduScape</IonTitle>
           </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">
-        <IonCard>
-          <img
-            alt="chem"
-            src="http://res.cloudinary.com/eduscape/image/upload/v1702303245/eduScape/lehpelgvgtezo1e5gat7.jpg"
-          />
-          <IonCardHeader>
-            <IonCardTitle>Chemical Engineer</IonCardTitle>
-            <div className="container">
-              <img
-                className="profile"
-                alt="guy in red"
-                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              />
-              <IonCardSubtitle>Carl Bryan Babol</IonCardSubtitle>
-            </div>
-          </IonCardHeader>
+        {isLoading ? (
+          'loading'
+        ) : error ? (
+          'Something went wrong!'
+        ) : (
+          <IonCard>
+            <img alt="chem" src={data.cover} />
+            <IonCardHeader>
+              <IonCardTitle>{data.title}</IonCardTitle>
+              {isLoadingUser ? (
+                'loading'
+              ) : errorUser ? (
+                'Something went wrong!'
+              ) : (
+                <div className="container">
+                  <img
+                    className="profile"
+                    alt="guy in red"
+                    src={dataUser.img}
+                  />
+                  <IonCardSubtitle>
+                    {dataUser.username}
+                  </IonCardSubtitle>
+                </div>
+              )}
+            </IonCardHeader>
 
-          <IonCardContent>
-            <h2>About This Service</h2> I provide personalized and comprehensive
-            support to students seeking assistance in various aspects of
-            chemical engineering. My goal is to help students grasp challenging
-            concepts, excel in their coursework, and build a strong foundation
-            in the field.
-          </IonCardContent>
-        </IonCard>
+            <IonCardContent>
+              <h2>About This Service</h2> {data.desc}
+            </IonCardContent>
+          </IonCard>
+        )}
         {/* -------------------------------------------------------- */}
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>
-              Personalized Chemical Engineering Tutoring
-            </IonCardTitle>
+        {isLoading ? (
+          ''
+        ) : error ? (
+          'Something went wrong!'
+        ) : (
+          <IonCard>
+            <IonCardHeader>
+              <IonCardTitle>{data.shortTitle}</IonCardTitle>
 
-            <IonCardSubtitle>
-              <span>₱ 9599</span>
-            </IonCardSubtitle>
-          </IonCardHeader>
+              <IonCardSubtitle>
+                <span>₱ {data.price}</span>
+              </IonCardSubtitle>
+            </IonCardHeader>
 
-          <IonCardContent>
-            <div className="details">
-              <div className="item">
-                <IonIcon icon={timerOutline} />
-                <span>Availability: 3/week</span>
-              </div>
-              <div className="features">
+            <IonCardContent>
+              <div className="details">
                 <div className="item">
-                  <img src="./greencheck.png" alt="" />
-                  <span>Expertise</span>
+                  <IonIcon icon={timerOutline} />
+                  <span>Availability: {data.availability}/week</span>
                 </div>
-                <div className="item">
-                  <img src="./greencheck.png" alt="" />
-                  <span>Customized Learning</span>
-                </div>
-                <div className="item">
-                  <img src="./greencheck.png" alt="" />
-                  <span>Flexible Scheduling</span>
+                <div className="features">
+                  {data.features.map((feature: any) => (
+                    <div className="item" key={feature}>
+                      <img src="/img/greencheck.png" alt="" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <IonButton>Continue</IonButton>
-          </IonCardContent>
-        </IonCard>
+              <IonButton>Continue</IonButton>
+            </IonCardContent>
+          </IonCard>
+        )}
       </IonContent>
     </IonPage>
   );

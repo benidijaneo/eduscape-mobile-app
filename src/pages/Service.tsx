@@ -38,8 +38,6 @@ const Service: React.FC = () => {
       }),
   });
 
-  console.log(data);
-
   const reSort = (type: any) => {
     setSort(type);
     setOpen(false);

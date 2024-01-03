@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   IonContent,
   IonHeader,
@@ -20,17 +20,32 @@ import {
   IonLabel,
   IonList,
   IonThumbnail,
-} from "@ionic/react";
+} from '@ionic/react';
 
-import "./Profile.scss";
+import './Profile.scss';
+import getCurrentUser from '../utils/getCurrentUser';
+import { useHistory } from 'react-router';
+import newRequest from '../utils/newRequest';
 
 const Profile: React.FC = () => {
+  const currentUser = getCurrentUser();
+  const navigate = useHistory();
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post('/auth/logout');
+      localStorage.setItem("currentUser", JSON.stringify(null));
+      navigate.push('/register');
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <div className="nav-bar">
-            <IonTitle style={{ color: "#c63625" }}>EduScape</IonTitle>
+            <IonTitle style={{ color: '#c63625' }}>EduScape</IonTitle>
             {/* <img
               className="profile"
               alt="guy in red"
@@ -44,7 +59,9 @@ const Profile: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>Profile</IonCardTitle>
-              <IonCardSubtitle>Carl Bryan Babol</IonCardSubtitle>
+              <IonCardSubtitle>
+                {currentUser.username}
+              </IonCardSubtitle>
             </IonCardHeader>
             <IonCardContent>
               <IonList>
@@ -52,15 +69,17 @@ const Profile: React.FC = () => {
                   <IonThumbnail slot="start">
                     <img
                       alt="Silhouette of mountains"
-                      src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      src={currentUser.img}
                     />
                   </IonThumbnail>
-                  <IonLabel>Username: carlbabol1</IonLabel>
+                  <IonLabel>
+                    Username: {currentUser.username}
+                  </IonLabel>
                 </IonItem>
               </IonList>
             </IonCardContent>
           </IonCard>
-          <IonButton>Logout</IonButton>
+          <IonButton onClick={handleLogout}>Logout</IonButton>
         </div>
       </IonContent>
     </IonPage>
