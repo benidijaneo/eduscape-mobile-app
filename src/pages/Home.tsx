@@ -16,7 +16,14 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>EduScape</IonTitle>
+          <div className="nav-bar">
+            <IonTitle>EduScape</IonTitle>
+            <img
+              className="profile"
+              alt="guy in red"
+              src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            />
+          </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen={true} className="ion-padding">
