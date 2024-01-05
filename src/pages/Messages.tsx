@@ -78,7 +78,7 @@ const Messages: React.FC = () => {
                     <IonThumbnail slot="start">
                       <div className="img-container">
                         <img
-                          alt="Silhouette of mountains"
+                          alt="User Profile"
                           src={
                             "https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
                           }

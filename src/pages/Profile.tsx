@@ -59,7 +59,7 @@ const Profile: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>Profile</IonCardTitle>
-              <IonCardSubtitle>{currentUser.username}</IonCardSubtitle>
+              {/* <IonCardSubtitle>{currentUser.username}</IonCardSubtitle> */}
             </IonCardHeader>
             <IonCardContent>
               <IonList>

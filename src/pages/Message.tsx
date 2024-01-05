@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IonContent,
   IonHeader,
@@ -7,13 +7,13 @@ import {
   IonTitle,
   IonToolbar,
   IonButton,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import './Message.scss';
-import { useQueryClient, useQuery, useMutation } from 'react-query';
-import { useParams } from 'react-router';
-import newRequest from '../utils/newRequest';
-import getCurrentUser from '../utils/getCurrentUser';
+import "./Message.scss";
+import { useQueryClient, useQuery, useMutation } from "react-query";
+import { useParams } from "react-router";
+import newRequest from "../utils/newRequest";
+import getCurrentUser from "../utils/getCurrentUser";
 
 interface MessageFormData {
   conversationId: any;
@@ -32,13 +32,13 @@ const Message: React.FC = () => {
       const response = await newRequest.get(`/users/${ide}`);
       return response.data.img;
     } catch (error) {
-      console.error('Error fetching user:', error);
+      console.error("Error fetching user:", error);
       throw error;
     }
   };
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['messages'],
+    queryKey: ["messages"],
     queryFn: () =>
       newRequest.get(`/messages/${id}`).then((res) => {
         return res.data;
@@ -50,37 +50,31 @@ const Message: React.FC = () => {
       return newRequest.post(`/messages`, message);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['messages']);
+      queryClient.invalidateQueries(["messages"]);
     },
   });
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     mutation.mutate({
       conversationId: id,
       desc: e.target[0].value,
-      img: '',
+      img: "",
     });
-    e.target[0].value = '';
+    e.target[0].value = "";
   };
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>{/* <IonTitle>EduScape</IonTitle> */}</IonToolbar>
-      </IonHeader>
+      <IonHeader></IonHeader>
       <IonContent fullscreen={true}>
         <div className="message">
           <div className="container">
-            {/* <span className="breadcrumbs"></span> */}
-
             <div className="messages">
               {data?.map((m: any) => (
                 <div
                   className={
-                    m.userId === currentUser._id
-                      ? 'owner item'
-                      : 'item'
+                    m.userId === currentUser._id ? "owner item" : "item"
                   }
                   key={m._id}
                 >
