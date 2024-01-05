@@ -61,6 +61,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
       }
     }
   };
+
+  const ssl = (data: any) => {
+    const ht = data.split(":")[0] + "s";
+    return ht + ":" + data.split(":")[1];
+  };
+
   return (
     <IonCard>
       {isLoading ? (
@@ -82,7 +88,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
           "error"
         ) : (
           <div className="container">
-            <img className="profile" alt="guy in red" src={data.img} />
+            <img className="profile" alt="guy in red" src={ssl(data.img)} />
             <IonCardSubtitle>{data.username}</IonCardSubtitle>
           </div>
         )}
