@@ -64,6 +64,25 @@ const Message: React.FC = () => {
     e.target[0].value = "";
   };
 
+  const ssl = (data: any) => {
+    const ht = data.split(":")[0] + "s";
+    return ht + ":" + data.split(":")[1];
+  };
+
+  const getConversations = () => {
+    const currentUserString = localStorage.getItem("conversations");
+
+    if (currentUserString) {
+      return JSON.parse(currentUserString);
+    }
+    return null;
+  };
+
+  const conData = getConversations();
+
+  const buyerImg = conData[0].buyerImg;
+  console.log(data);
+
   return (
     <IonPage>
       <IonHeader></IonHeader>
@@ -80,11 +99,9 @@ const Message: React.FC = () => {
                 >
                   <img
                     src={
-                      currentUser._id == m.userId
-                        ? currentUser.img
-                        : `${getUser(m.userId)}`
+                      m.userId === currentUser._id ? currentUser.img : buyerImg
                     }
-                    alt=""
+                    alt="User Profile"
                   />
                   <p>{m.desc}</p>
                 </div>

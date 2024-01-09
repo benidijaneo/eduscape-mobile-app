@@ -75,7 +75,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
         "error"
       ) : (
         <div>
-          <img alt="cover" src={item.cover} />
+          <img alt="cover" src={ssl(item.cover)} />
         </div>
       )}
 
@@ -88,7 +88,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
           "error"
         ) : (
           <div className="container">
-            <img className="profile" alt="guy in red" src={ssl(data.img)} />
+            <img className="profile" alt="user profile" src={ssl(data.img)} />
             <IonCardSubtitle>{data.username}</IonCardSubtitle>
           </div>
         )}

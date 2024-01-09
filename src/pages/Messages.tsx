@@ -46,6 +46,29 @@ const Messages: React.FC = () => {
   const handleRead = (id: any) => {
     mutation.mutate(id);
   };
+
+  const setConversations = async () => {
+    const currentUserString = localStorage.setItem(
+      "conversations",
+      JSON.stringify(data)
+    );
+    return currentUserString;
+  };
+  // localStorage.setItem("conversations", JSON.stringify(data));
+
+  const getConversations = () => {
+    const currentUserString = localStorage.getItem("conversations");
+
+    if (currentUserString) {
+      return JSON.parse(currentUserString);
+    }
+    return null;
+  };
+
+  setConversations();
+  // const conData = getConversations();
+  // const buyerImg = conData[0].buyerImg;
+
   return (
     <IonPage>
       <IonHeader>
@@ -80,12 +103,14 @@ const Messages: React.FC = () => {
                         <img
                           alt="User Profile"
                           src={
-                            "https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
+                            c.userId === currentUser._id ? currentUser.img : ""
                           }
                         />
                       </div>
                     </IonThumbnail>
-                    <IonLabel>{c.id}</IonLabel>
+                    <IonLabel>
+                      {currentUser.isSeller ? c.buyerName : c.sellerName}
+                    </IonLabel>
                     <IonButton href={`/message/${c.id}`}>View</IonButton>
                   </IonItem>
                 </IonList>

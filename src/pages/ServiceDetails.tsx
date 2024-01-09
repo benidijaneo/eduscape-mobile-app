@@ -50,6 +50,12 @@ const ServiceDetails: React.FC = () => {
       }),
     enabled: !!userId,
   });
+
+  const ssl = (data: any) => {
+    const ht = data.split(":")[0] + "s";
+    return ht + ":" + data.split(":")[1];
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -66,7 +72,7 @@ const ServiceDetails: React.FC = () => {
           "Something went wrong!"
         ) : (
           <IonCard>
-            <img alt="chem" src={data.cover} />
+            <img alt="chem" src={ssl(data.cover)} />
             <IonCardHeader>
               <IonCardTitle>{data.title}</IonCardTitle>
               {isLoadingUser ? (
@@ -77,8 +83,8 @@ const ServiceDetails: React.FC = () => {
                 <div className="container">
                   <img
                     className="profile"
-                    alt="guy in red"
-                    src={dataUser.img}
+                    alt="User Profile"
+                    src={ssl(dataUser.img)}
                   />
                   <IonCardSubtitle>{dataUser.username}</IonCardSubtitle>
                 </div>
@@ -114,7 +120,7 @@ const ServiceDetails: React.FC = () => {
                 <div className="features">
                   {data.features.map((feature: any) => (
                     <div className="item" key={feature}>
-                      <img src="/img/greencheck.png" alt="" />
+                      <img src="/greencheck.png" alt="" />
                       <span>{feature}</span>
                     </div>
                   ))}

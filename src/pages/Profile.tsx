@@ -40,6 +40,12 @@ const Profile: React.FC = () => {
       console.log(err);
     }
   };
+
+  const ssl = (data: any) => {
+    const ht = data.split(":")[0] + "s";
+    return ht + ":" + data.split(":")[1];
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -59,13 +65,12 @@ const Profile: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>Profile</IonCardTitle>
-              {/* <IonCardSubtitle>{currentUser.username}</IonCardSubtitle> */}
             </IonCardHeader>
             <IonCardContent>
               <IonList>
                 <IonItem lines="none">
                   <IonThumbnail slot="start">
-                    <img alt="User Profile" src={currentUser.img} />
+                    <img alt="User Profile" src={ssl(currentUser.img)} />
                   </IonThumbnail>
                   <IonLabel>Username: {currentUser.username}</IonLabel>
                 </IonItem>
