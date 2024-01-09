@@ -64,7 +64,6 @@ const App: React.FC = () => {
   const [showTabs, setShowTabs] = useState(true);
 
   const currentUser = getCurrentUser();
-  console.log(currentUser);
 
   useEffect(() => {
     // Update showTabs based on the presence of currentUser
@@ -89,7 +88,7 @@ const App: React.FC = () => {
               <Service />
             </Route>
             <Route path="/message/:id">
-              <Message />
+              <Message/>
             </Route>
             <Route path="/signin">
               <SignIn />
